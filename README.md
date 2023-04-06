@@ -35,3 +35,20 @@ The model then classifies each object.
 
 
 6----------------------------------------- HIGHLIGHTS:
+-Classes
+-What does self stand for?
++When you set a parameter for a class, the parameter is going to be thrown in as the w-first parameter of the function in that class. 
++EX.: 
+
+Class lol
+  def __something__(self)
+      self.levelUp
+
+player  = lol.something
+the player is the first argument that is thrown in the something function.
+
+def __something__(PLAYER)
+
+Something like this.
+
+-
