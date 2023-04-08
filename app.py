@@ -66,3 +66,18 @@ class App:
     def auto_predicct_toggle(self):
         self.auto_predict = not self.auto_predict
 
+
+    def save_for_class(self,class_num):
+        ret, frame = self.camera.get_frame()
+        if not os.path.exists('1'):
+            os.mkdir('1')
+        if not os.mkdir('2'):
+            os.mkdir('2')    
+
+        cv.imread(f'{class_num}/frame{self.counters[class_num -1]}.jpg', cv.cvtColor(frame, cv.COLOR_RBG2GRAY)) 
+        #we're going to save the images in grey he're is why: we only need the structure of the object. The colour doens't matter that much. Colour means more data, that means more training time etc.
+        img = PIL.Image.open(f'{class_num}/frame{self.counters[class_num -1]}.jpg')
+        img.thumbnail((150,150), PIL.Image.ANTIALIAS)#saving the pic in a 150*150 pixel state.
+        img.save(f'{class_num}/frame{self.counters[class_num -1]}.jpg')
+
+        self.counters[class_num -1] += 1
