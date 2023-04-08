@@ -8,6 +8,9 @@ class Camera:
         if not self.camera.isOpened():
             raise ValueError("unable to open the camera") #as far as i understand this whole block is a if else like block and we're coding the catch statement -ish
         
+        self.width = self.camera.get(cv.CAP_PROP_FRAME_WIDTH)
+        self.height = self.camera.get(cv.CAP_PROP_FRAME_HEIGHT)
+
 
     def __del__(self):
         if self.camera.isOpened():

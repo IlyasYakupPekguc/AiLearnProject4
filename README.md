@@ -31,7 +31,8 @@ The model then classifies each object.
 
 
 5----------------------------------------- THOUGHTS:
-
+Future recomendation:
+add more classes to the gui and play a little with the project. 
 
 
 6----------------------------------------- HIGHLIGHTS:
