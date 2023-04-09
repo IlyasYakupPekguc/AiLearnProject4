@@ -5,6 +5,7 @@ import os #file handeling
 import PIL.Image, PIL.ImageTk #PIL stands for python image library, it' used for support for opening, manipulating, and saving many different image file formats.
 import camera #importing thr class
 #the central piece of the program. GUİ, controling functions (how to save images , how many are saved, etc.).
+import model
 
 
 class App:
@@ -16,7 +17,7 @@ class App:
 
         self.counters = [1,1] #an array that keeps up with 2 numbers both starting with 1 of the number of taken pics
 
-        #self.model = ...
+        self.model = model.Model()
 
         self.auto_predict = False
 
@@ -92,13 +93,13 @@ class App:
 
 
         self.counters[1,1]
-        #self.model = model.Model()
+        self.model = model.Model()
         self.class_label.config(text = 'CLASS') #resetting thr given class names by us to the standart "class" name
 
 
     def update(self):
         if self.auto_predict:
-            #self.predict()
+            self.predict()
             pass
 
         ret,frame = self.camera.get_frame()
@@ -110,5 +111,16 @@ class App:
             self.window.after(self.delay,self.update)
             #we're calling the function recursively, and bu revering and not calling teh function with () at the end of the function, the function will be called after the delay
 
+    def predict(self):
+        frame = self.camera.get_frame()
+        prediction = self.model.predict(frame)
+
+        if prediction == 1:
+            self.class_label.config(text= self.classname_one)
+            return self.classname_one
+        
+        if prediction == 2:
+            self.class_label.config(text= self.classname_two)
+            return self.classname_two
 
 
