@@ -2,7 +2,7 @@ import tkinter as tk #for the gui
 from tkinter import simpledialog #for the questions 
 import cv2 as cv
 import os #file handeling
-import PIL.Image, PIL.ImageTk
+import PIL.Image, PIL.ImageTk #PIL stands for python image library, it' used for support for opening, manipulating, and saving many different image file formats.
 import camera #importing thr class
 #the central piece of the program. GUİ, controling functions (how to save images , how many are saved, etc.).
 
@@ -25,7 +25,7 @@ class App:
         self.init.gui() #init stands for initializing
 
         self.delay = 15
-        #self.update()
+        self.update()
 
         self.window.attributes('-topmost', True)#possition of the window
         self.window.mainloop()
@@ -81,3 +81,34 @@ class App:
         img.save(f'{class_num}/frame{self.counters[class_num -1]}.jpg')
 
         self.counters[class_num -1] += 1
+
+
+    def reset(self): 
+        for directory in ['1', '2']:
+            for file in os.listdir(directory): #first we're searching for each directory in the list
+                file_path = os.path.join(directory, file) #we linked the file path by combining the directory and file
+                if os.path.isfile(file_path):#if exists
+                    os.unlink(file_path)#then delete
+
+
+        self.counters[1,1]
+        #self.model = model.Model()
+        self.class_label.config(text = 'CLASS') #resetting thr given class names by us to the standart "class" name
+
+
+    def update(self):
+        if self.auto_predict:
+            #self.predict()
+            pass
+
+        ret,frame = self.camera.get_frame()
+
+        if ret:
+            self.photo = PIL.ImageTk.PhotoImage(image = PIL.Image.fromarray(frame)) #we're getting the image and setting it to a tk image to use it for our gui 
+            self.canvas.create_image(00,image=self.photo, anchor= tk.NW)
+
+            self.window.after(self.delay,self.update)
+            #we're calling the function recursively, and bu revering and not calling teh function with () at the end of the function, the function will be called after the delay
+
+
+
