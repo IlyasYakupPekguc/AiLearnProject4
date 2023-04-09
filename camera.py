@@ -19,7 +19,7 @@ class Camera:
 
     def get_frame(self):
         if self.camera.isOpened():
-            ret, frame = self.camer.read()
+            ret, frame = self.camera.read()
 
             if ret: #if there's a return value 
                 return(ret,cv.cvtColor(frame,cv.COLOR_BGR2RGB))

@@ -23,7 +23,7 @@ class App:
 
         self.camera = camera.Camera()
 
-        self.init.gui() #init stands for initializing
+        self.init_gui() #init stands for initializing
 
         self.delay = 15
         self.update()
@@ -64,7 +64,7 @@ class App:
 
 
 
-    def auto_predicct_toggle(self):
+    def auto_predict_toggle(self):
         self.auto_predict = not self.auto_predict
 
 
@@ -72,10 +72,10 @@ class App:
         ret, frame = self.camera.get_frame()
         if not os.path.exists('1'):
             os.mkdir('1')
-        if not os.mkdir('2'):
+        if not os.path.exists('2'):
             os.mkdir('2')    
 
-        cv.imread(f'{class_num}/frame{self.counters[class_num -1]}.jpg', cv.cvtColor(frame, cv.COLOR_RBG2GRAY)) 
+        cv.imwrite(f'{class_num}/frame{self.counters[class_num -1]}.jpg', cv.cvtColor(frame, cv.COLOR_RGB2GRAY)) 
         #we're going to save the images in grey he're is why: we only need the structure of the object. The colour doens't matter that much. Colour means more data, that means more training time etc.
         img = PIL.Image.open(f'{class_num}/frame{self.counters[class_num -1]}.jpg')
         img.thumbnail((150,150), PIL.Image.ANTIALIAS)#saving the pic in a 150*150 pixel state.
@@ -92,7 +92,7 @@ class App:
                     os.unlink(file_path)#then delete
 
 
-        self.counters[1,1]
+        self.counters = [1,1]
         self.model = model.Model()
         self.class_label.config(text = 'CLASS') #resetting thr given class names by us to the standart "class" name
 
@@ -106,7 +106,7 @@ class App:
 
         if ret:
             self.photo = PIL.ImageTk.PhotoImage(image = PIL.Image.fromarray(frame)) #we're getting the image and setting it to a tk image to use it for our gui 
-            self.canvas.create_image(00,image=self.photo, anchor= tk.NW)
+            self.canvas.create_image(0,0,image=self.photo, anchor= tk.NW)
 
             self.window.after(self.delay,self.update)
             #we're calling the function recursively, and bu revering and not calling teh function with () at the end of the function, the function will be called after the delay
