@@ -23,11 +23,13 @@ The model then classifies each object.
 
 
 3----------------------------------------- CODING NOTES:
-
-
+Where to start, 
+I slowly start to understand coding AI with python mare and more by each project. It's still pretty complicated for me though as it is a very big an complex subject.
+But i know that in like 6 months if i keep up with my pace is that i will become a better devoloper on the subject AI. By just practicing and learning more and more
+i gain new information and learn new things about AI.
 
 4----------------------------------------- ERRORS:
-
+ı had a lot of misspelling errors that i need to look out for.
 
 
 5----------------------------------------- THOUGHTS:
@@ -52,4 +54,7 @@ def __something__(PLAYER)
 
 Something like this.
 
--
+-Functions
+Like consturctors, init function, the slef keyword, and manymore.
+
+-Understanding the libraries better and what each library stands for.
